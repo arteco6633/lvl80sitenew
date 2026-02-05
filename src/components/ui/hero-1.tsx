@@ -15,8 +15,8 @@ interface HeroProps {
 
 export function Hero({
   eyebrow = "LVL 80.STUDIO",
-  title,
-  subtitle,
+  title: _title,
+  subtitle: _subtitle,
   ctaLabel = "Связаться с нами",
   ctaHref = "#contacts",
 }: HeroProps) {

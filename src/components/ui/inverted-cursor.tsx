@@ -8,8 +8,8 @@ interface CursorProps {
 
 export const Cursor: React.FC<CursorProps> = ({ size = 60 }) => {
   const cursorRef = useRef<HTMLDivElement>(null)
-  const requestRef = useRef<number>()
-  const previousPos = useRef({ x: -size, y: -size }) // старт за пределами экрана
+  const requestRef = useRef<number | undefined>(undefined)
+  const previousPos = useRef<{ x: number; y: number }>({ x: -size, y: -size }) // старт за пределами экрана
 
   const [visible, setVisible] = useState(false)
   const [position, setPosition] = useState({ x: -size, y: -size })

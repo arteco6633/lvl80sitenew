@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "Apparel Display";
+  src: url("/Apparel%20Display%20Regular%20It.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #070707;
+  --bg-elevated: #111111;
+  --bg-soft: #151515;
+  --border-subtle: #262626;
+  --accent: #ff5c10;
+  --accent-soft: rgba(255, 92, 16, 0.3);
+  --accent-strong: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #ebebf5;
+  --text-muted: #7f7f7f;
+  --light-gray: #f2f2f2;
+  --radius-lg: 10px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
+  --shadow-soft: 0 4px 40px rgba(0, 0, 0, 0.5);
+  --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #070707;
+  color: var(--text-primary);
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.7s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out forwards;
+}
+
+/* Итальянский Apparel Display для отдельных слов в заголовке */
+.font-apparel-italic {
+  font-family: "Apparel Display", "Times New Roman", serif;
+  font-style: italic;
+}
+
+/* Заметное мигание неона */
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow:
+      0 0 12px rgba(255, 92, 16, 0.9),
+      0 0 24px rgba(255, 92, 16, 0.5),
+      0 0 40px rgba(255, 92, 16, 0.25);
+  }
+  50% {
+    opacity: 0.78;
+    filter: brightness(0.85);
+    text-shadow:
+      0 0 8px rgba(255, 92, 16, 0.6),
+      0 0 16px rgba(255, 92, 16, 0.35),
+      0 0 28px rgba(255, 92, 16, 0.15);
+  }
+}
+
+/* Неоновое свечение для акцентных слов в hero */
+.hero-title-neon {
+  color: #ff5c10;
+  text-shadow:
+    0 0 12px rgba(255, 92, 16, 0.9),
+    0 0 24px rgba(255, 92, 16, 0.5),
+    0 0 40px rgba(255, 92, 16, 0.25);
+  animation: neon-flicker 2.5s ease-in-out infinite;
+}
+

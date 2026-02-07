@@ -27,12 +27,18 @@
   --radius-sm: 4px;
   --shadow-soft: 0 4px 40px rgba(0, 0, 0, 0.5);
   --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.25);
+  --shadow-button-inset: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
 }
 
 html,
@@ -44,6 +50,7 @@ body,
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background: #070707;
   color: var(--text-primary);
   font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',

@@ -1,22 +1,57 @@
+import { useEffect, useRef, useState } from "react"
+import { Menu } from "lucide-react"
 import "./App.css"
-import headerLogo from "../LVL 80.Studio (1).svg"
 import projectHero from "../Bb_wheels.png"
 import projectMockup from "../MOCKUP 5.png"
 import projectMockupBottom from "../MOCKUP 3.png"
 import rocketIcon from "../Rocket.svg"
-import { Target, Layers, TrendingUp } from "lucide-react"
 import { Hero } from "./components/ui/hero-1"
+import { ContactModal } from "./components/ui/contact-modal"
 
 function App() {
+  const servicesSectionRef = useRef<HTMLElement>(null)
+  const nichesBlockRef = useRef<HTMLDivElement>(null)
+  const [servicesInView, setServicesInView] = useState(false)
+  const [nichesInView, setNichesInView] = useState(false)
+  const [nichesFilter, setNichesFilter] = useState("Услуги")
+  const [contactModalOpen, setContactModalOpen] = useState(false)
+  const [contactThankYou, setContactThankYou] = useState(false)
+
+  const openContactModal = () => {
+    setContactThankYou(false)
+    setContactModalOpen(true)
+  }
+  const closeContactModal = () => setContactModalOpen(false)
+
+  useEffect(() => {
+    const el = servicesSectionRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setServicesInView(entry.isIntersecting),
+      { threshold: 0.12, rootMargin: "0px 0px -80px 0px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const el = nichesBlockRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setNichesInView(entry.isIntersecting),
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
   return (
     <div className="page">
       <header className="header">
         <div className="header__logo">
-          <img src={headerLogo} alt="LVL 80.Studio" className="header__logo-image" />
+          <span className="header__logo-text">LVL 80.AGENCY</span>
         </div>
         <nav className="header__nav">
           <a href="#services">Услуги</a>
-          <a href="#about">Про нас</a>
           <a href="#projects">Проекты</a>
           <a href="#tariffs">Тарифы</a>
         </nav>
@@ -24,67 +59,20 @@ function App() {
           <a href="tel:+79609319494" className="header__phone">
             8&nbsp;960&nbsp;931&nbsp;94&nbsp;94
           </a>
-          <button className="header__cta">Связаться с нами</button>
+          <button type="button" className="header__cta" onClick={openContactModal}>Связаться с нами</button>
         </div>
       </header>
 
       <main>
         <Hero
-          title="Создаём решения, которые работают на результат"
-          subtitle="От стратегии до запуска — полное сопровождение digital‑продукта с акцентом на бизнес‑показатели."
-          eyebrow="LVL 80.STUDIO"
-          ctaLabel="Связаться с нами"
-          ctaHref="#contacts"
+          onContactClick={openContactModal}
+          onAuditClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
         />
 
-        <section id="about" className="about-section">
-          <div className="about-section__inner">
-            <div className="about-section__ghost-title">Что делаем</div>
-            <div className="about-section__content">
-            <div className="about-section__header">
-              <h2 className="about-section__title">
-                Превращаем сайты в рабочие инструменты роста бизнеса
-              </h2>
-            </div>
-            <div className="about-section__columns">
-              <article className="about-section__column">
-                <div className="about-section__icon" aria-hidden>
-                  <Target className="about-section__icon-svg" strokeWidth={1.5} />
-                </div>
-                <h3 className="about-section__column-title">Стратегично</h3>
-                <p className="about-section__column-text">
-                  Понимаем суть бизнеса и проектируем решения с фокусом на цели, а не просто
-                  визуал.
-                </p>
-              </article>
-              <article className="about-section__column">
-                <div className="about-section__icon" aria-hidden>
-                  <Layers className="about-section__icon-svg" strokeWidth={1.5} />
-                </div>
-                <h3 className="about-section__column-title">Системно</h3>
-                <p className="about-section__column-text">
-                  Создаём цифровые продукты с логикой, сценариями и основой для роста и
-                  масштабирования.
-                </p>
-              </article>
-              <article className="about-section__column">
-                <div className="about-section__icon" aria-hidden>
-                  <TrendingUp className="about-section__icon-svg" strokeWidth={1.5} />
-                </div>
-                <h3 className="about-section__column-title">Результативно</h3>
-                <p className="about-section__column-text">
-                  Работаем так, чтобы цифровой продукт приносил реальную пользу бизнесу.
-                </p>
-              </article>
-            </div>
-          </div>
-          </div>
-        </section>
-
-        <section id="services" className="strategy-section">
+        <section id="services" className="strategy-section" ref={servicesSectionRef}>
           <div className="strategy-section__inner">
-            <div className="strategy-section__ghost-title"><span className="text-white">От стратегии до </span><span className="font-apparel-italic" style={{ color: '#ff5c10' }}>запуска</span></div>
-            <div className="strategy-section__grid">
+            <div className="strategy-section__ghost-title"><span className="text-white">От стратегии до запуска</span><span className="strategy-section__ghost-dot" aria-hidden /></div>
+            <div className={`strategy-section__grid${servicesInView ? " strategy-section__grid--in-view" : ""}`}>
               <article className="strategy-card">
                 <h3 className="strategy-card__title">SEO / стратегия</h3>
                 <p className="strategy-card__text">
@@ -133,6 +121,67 @@ function App() {
                 <span className="strategy-card__number">06</span>
               </article>
             </div>
+
+            <div ref={nichesBlockRef} className={`niches-block${nichesInView ? " niches-block--in-view" : ""}`}>
+              <h2 className="niches-block__title">
+                Решение для роста
+                <br />
+                бизнеса в разных нишах<span className="niches-block__dot" aria-hidden />
+              </h2>
+              <div className="niches-block__filters">
+                {["IT", "B2B", "Услуги", "Сложные продукты", "Экспертные компании", "Медиа", "Образование", "Премиум-сегмент", "Локально"].map((label) => (
+                  <button
+                    key={label}
+                    type="button"
+                    className={`niches-block__filter ${nichesFilter === label ? "niches-block__filter--active" : ""}`}
+                    onClick={() => setNichesFilter(label)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <div className="niches-block__grid">
+                <div className="niches-block__row">
+                  <article className="niches-card niches-card--1">
+                    <div className="niches-card__icon" aria-hidden>
+                      <Menu size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="niches-card__title">Позиционирование</h3>
+                    <p className="niches-card__text">Посетитель за первые секунды понимает, кто вы, какую задачу решаете и почему к вам имеет смысл обратиться именно сейчас.</p>
+                  </article>
+                  <article className="niches-card niches-card--2">
+                    <div className="niches-card__icon" aria-hidden>
+                      <Menu size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="niches-card__title">Входящий поток</h3>
+                    <p className="niches-card__text">Сайт начинает приводить клиентов из поиска и нейросетей и работает как самостоятельный канал привлечения, а не только как поддержка рекламы.</p>
+                  </article>
+                </div>
+                <div className="niches-block__row">
+                  <article className="niches-card niches-card--3">
+                    <div className="niches-card__icon" aria-hidden>
+                      <Menu size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="niches-card__title">Конверсия</h3>
+                    <p className="niches-card__text">Структура и пользовательские сценарии выстроены так, чтобы больше посетителей доходили до заявки с того же объёма трафика.</p>
+                  </article>
+                  <article className="niches-card niches-card--4">
+                    <div className="niches-card__icon" aria-hidden>
+                      <Menu size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="niches-card__title">Независимость</h3>
+                    <p className="niches-card__text">Посетитель за первые секунды понимает, кто вы, какую задачу решаете и почему к вам имеет смысл обратиться именно сейчас.</p>
+                  </article>
+                  <article className="niches-card niches-card--5">
+                    <div className="niches-card__icon" aria-hidden>
+                      <Menu size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="niches-card__title">Масштабируемость</h3>
+                    <p className="niches-card__text">Сайт можно развивать вместе с бизнесом: добавлять новые услуги, направления и продукты без необходимости полного редизайна.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="strategy-section__glow" aria-hidden="true" />
         </section>
@@ -140,7 +189,7 @@ function App() {
         <section id="projects" className="section section--projects">
           <div className="section--projects__inner">
             <div className="section__header">
-              <p className="section__label"><span className="section__label-hero-style">Наши</span> проекты</p>
+              <p className="section__label"><span className="section__label-hero-style">Наши</span> проекты<span className="section--projects__dot" aria-hidden /></p>
               <h2 className="section__title">Кейсы, за которые не стыдно</h2>
             </div>
             <div className="projects-strip">
@@ -242,7 +291,7 @@ function App() {
         <section id="tariffs" className="section section--tariffs">
           <div className="tariffs__inner">
             <div className="tariffs-header">
-              <p className="tariffs-header__ghost"><span className="tariffs-header__ghost-manrope">Пакеты</span><span className="tariffs-header__ghost-accent">&nbsp;тарифов</span></p>
+              <p className="tariffs-header__ghost"><span className="tariffs-header__ghost-manrope">Пакеты</span><span className="tariffs-header__ghost-accent">&nbsp;тарифов</span><span className="tariffs-header__dot" aria-hidden /></p>
             </div>
             <div className="tariffs-grid">
             <article className="tariff-card">
@@ -489,6 +538,13 @@ function App() {
           <img src="/Apps.svg" alt="" className="footer__apps-icon" aria-hidden />
         </div>
       </footer>
+
+      <ContactModal
+        isOpen={contactModalOpen}
+        onClose={closeContactModal}
+        showThankYou={contactThankYou}
+        onFormSubmit={() => setContactThankYou(true)}
+      />
     </div>
   )
 }

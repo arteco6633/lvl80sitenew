@@ -1,12 +1,6 @@
 "use client"
 
-const IconAlignLeft = ({ width = 32, height = 32 }: { width?: number; height?: number }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: `${width}px`, height: `${height}px`, flexShrink: 0 }}>
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="12" x2="15" y2="12" />
-    <line x1="3" y1="18" x2="18" y2="18" />
-  </svg>
-)
+import { Typewriter } from "./typewriter-text"
 
 const heroCards = [
   {
@@ -14,12 +8,12 @@ const heroCards = [
     text: "Сайт становится стабильным источником клиентов из Яндекса и Google за счёт продуманной структуры и SEO-основы.",
   },
   {
-    title: "GEO / нейросети",
-    text: "Проектируем сайт так, чтобы он попадал в ответы GPT, Алисы и ИИ-поиска и становился дополнительным каналом входящих обращений.",
+    title: "GEO/AI",
+    text: "Сайт который попадает в ответы GPT, Алисы и AI поиска и становился дополнительным каналом обращений.",
   },
   {
     title: "UI/UX",
-    text: "Продуманная логика, сценарии и дизайн помогают пользователю быстро понять предложение и дойти до целевого действия.",
+    text: "Сайт с продуманной логикой, сценарием и дизайном который доведет пользователя до целевого действия.",
   },
 ]
 
@@ -40,7 +34,16 @@ export function Hero({
         <h1 className="hero-new__title">
           Мы делаем сайты, которые
           <br />
-          находят и выбирают<span className="hero-new__dot" aria-hidden />
+          <Typewriter
+            text={["находят и выбирают", "приводят клиентов", "работают на результат"]}
+            speed={80}
+            deleteSpeed={40}
+            delay={2000}
+            loop
+            cursor=""
+            className="hero-new__title-inline"
+          />
+          <span className="hero-new__dot" aria-hidden>|</span>
         </h1>
         <div className="hero-new__buttons">
           <button
@@ -60,19 +63,20 @@ export function Hero({
         </div>
       </div>
 
-      <div className="hero-new__shapes">
+      <div className="hero-new__shapes-wrapper">
+        <div className="hero-new__shapes">
         {heroCards.map((card) => (
           <div key={card.title} className="hero-new__shape-wrap">
-            <div className="hero-new__shape-icon" aria-hidden>
-              <IconAlignLeft width={22} height={26} />
-            </div>
-            <img src="/Subtract.svg" alt="" className="hero-new__shape" aria-hidden />
-            <div className="hero-new__shape-content">
+            <div className="hero-new__shape-header">
               <h3 className="hero-new__shape-title">{card.title}</h3>
+            </div>
+            <img src="/Card-1.svg" alt="" className="hero-new__shape" aria-hidden />
+            <div className="hero-new__shape-content">
               <p className="hero-new__shape-text">{card.text}</p>
             </div>
           </div>
         ))}
+        </div>
       </div>
     </section>
   )

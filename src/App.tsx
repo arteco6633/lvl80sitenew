@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Menu } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import "./App.css"
 import projectHero from "../Bb_wheels.png"
 import projectMockup from "../MOCKUP 5.png"
@@ -13,9 +13,11 @@ function App() {
   const nichesBlockRef = useRef<HTMLDivElement>(null)
   const [servicesInView, setServicesInView] = useState(false)
   const [nichesInView, setNichesInView] = useState(false)
-  const [nichesFilter, setNichesFilter] = useState("Услуги")
+  const [nichesFilter, setNichesFilter] = useState("")
   const [contactModalOpen, setContactModalOpen] = useState(false)
   const [contactThankYou, setContactThankYou] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [faqOpenIndex, setFaqOpenIndex] = useState(0)
 
   const openContactModal = () => {
     setContactThankYou(false)
@@ -35,6 +37,11 @@ function App() {
   }, [])
 
   useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [menuOpen])
+
+  useEffect(() => {
     const el = nichesBlockRef.current
     if (!el) return
     const observer = new IntersectionObserver(
@@ -50,16 +57,35 @@ function App() {
         <div className="header__logo">
           <span className="header__logo-text">LVL 80.AGENCY</span>
         </div>
-        <nav className="header__nav">
-          <a href="#services">Услуги</a>
-          <a href="#projects">Проекты</a>
-          <a href="#tariffs">Тарифы</a>
-        </nav>
-        <div className="header__actions">
-          <a href="tel:+79609319494" className="header__phone">
-            8&nbsp;960&nbsp;931&nbsp;94&nbsp;94
-          </a>
-          <button type="button" className="header__cta" onClick={openContactModal}>Связаться с нами</button>
+        <button
+          type="button"
+          className="header__hamburger"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Открыть меню"
+          aria-expanded={menuOpen}
+        >
+          <Menu size={24} strokeWidth={2} />
+        </button>
+        <div className={`header__menu${menuOpen ? " header__menu--open" : ""}`}>
+          <button
+            type="button"
+            className="header__menu-close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Закрыть меню"
+          >
+            <X size={24} strokeWidth={2} />
+          </button>
+          <nav className="header__nav">
+            <a href="#services" onClick={() => setMenuOpen(false)}>Услуги</a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>Проекты</a>
+            <a href="#tariffs" onClick={() => setMenuOpen(false)}>Тарифы</a>
+          </nav>
+          <div className="header__actions">
+            <a href="tel:+79609319494" className="header__phone">
+              8&nbsp;960&nbsp;931&nbsp;94&nbsp;94
+            </a>
+            <button type="button" className="header__cta" onClick={() => { setMenuOpen(false); openContactModal() }}>Связаться с нами</button>
+          </div>
         </div>
       </header>
 
@@ -73,6 +99,7 @@ function App() {
           <div className="strategy-section__inner">
             <div className="strategy-section__ghost-title"><span className="text-white">От стратегии до запуска</span><span className="strategy-section__ghost-dot" aria-hidden /></div>
             <div className={`strategy-section__grid${servicesInView ? " strategy-section__grid--in-view" : ""}`}>
+              <div className="strategy-section__glow" aria-hidden="true" />
               <article className="strategy-card">
                 <h3 className="strategy-card__title">SEO / стратегия</h3>
                 <p className="strategy-card__text">
@@ -106,7 +133,7 @@ function App() {
                 <span className="strategy-card__number">03</span>
               </article>
               <article className="strategy-card">
-                <h3 className="strategy-card__title">Доверие / результат</h3>
+                <h3 className="strategy-card__title">Результат</h3>
                 <p className="strategy-card__text">
                   Берём ответственность за итог: выстраиваем решения так, чтобы продукт работал
                   стабильно, вызывал доверие и приносил измеримый результат бизнесу.
@@ -133,8 +160,8 @@ function App() {
                   <button
                     key={label}
                     type="button"
+                    disabled
                     className={`niches-block__filter ${nichesFilter === label ? "niches-block__filter--active" : ""}`}
-                    onClick={() => setNichesFilter(label)}
                   >
                     {label}
                   </button>
@@ -144,14 +171,14 @@ function App() {
                 <div className="niches-block__row">
                   <article className="niches-card niches-card--1">
                     <div className="niches-card__icon" aria-hidden>
-                      <Menu size={20} strokeWidth={2} />
+                      <img src="/niches-icon.svg" alt="" width={48} height={48} />
                     </div>
                     <h3 className="niches-card__title">Позиционирование</h3>
                     <p className="niches-card__text">Посетитель за первые секунды понимает, кто вы, какую задачу решаете и почему к вам имеет смысл обратиться именно сейчас.</p>
                   </article>
                   <article className="niches-card niches-card--2">
                     <div className="niches-card__icon" aria-hidden>
-                      <Menu size={20} strokeWidth={2} />
+                      <img src="/niches-icon.svg" alt="" width={48} height={48} />
                     </div>
                     <h3 className="niches-card__title">Входящий поток</h3>
                     <p className="niches-card__text">Сайт начинает приводить клиентов из поиска и нейросетей и работает как самостоятельный канал привлечения, а не только как поддержка рекламы.</p>
@@ -160,21 +187,21 @@ function App() {
                 <div className="niches-block__row">
                   <article className="niches-card niches-card--3">
                     <div className="niches-card__icon" aria-hidden>
-                      <Menu size={20} strokeWidth={2} />
+                      <img src="/niches-icon.svg" alt="" width={48} height={48} />
                     </div>
                     <h3 className="niches-card__title">Конверсия</h3>
                     <p className="niches-card__text">Структура и пользовательские сценарии выстроены так, чтобы больше посетителей доходили до заявки с того же объёма трафика.</p>
                   </article>
                   <article className="niches-card niches-card--4">
                     <div className="niches-card__icon" aria-hidden>
-                      <Menu size={20} strokeWidth={2} />
+                      <img src="/niches-icon.svg" alt="" width={48} height={48} />
                     </div>
                     <h3 className="niches-card__title">Независимость</h3>
                     <p className="niches-card__text">Посетитель за первые секунды понимает, кто вы, какую задачу решаете и почему к вам имеет смысл обратиться именно сейчас.</p>
                   </article>
                   <article className="niches-card niches-card--5">
                     <div className="niches-card__icon" aria-hidden>
-                      <Menu size={20} strokeWidth={2} />
+                      <img src="/niches-icon.svg" alt="" width={48} height={48} />
                     </div>
                     <h3 className="niches-card__title">Масштабируемость</h3>
                     <p className="niches-card__text">Сайт можно развивать вместе с бизнесом: добавлять новые услуги, направления и продукты без необходимости полного редизайна.</p>
@@ -183,7 +210,6 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="strategy-section__glow" aria-hidden="true" />
         </section>
 
         <section id="projects" className="section section--projects">
@@ -279,8 +305,8 @@ function App() {
                 <span className="cta__title-italic">сайта</span>
               </h2>
               <p className="cta__text">
-                Проведём экспресс‑аудит текущего решения и предложим<br />
-                план улучшений по дизайну, структуре и фронтенду.
+                Проведём экспресс‑аудит текущего решения и<br />
+                предложим план улучшений по дизайну, структуре и фронтенду.
               </p>
               <button className="button button--light cta__button">Получить аудит</button>
             </div>
@@ -374,77 +400,36 @@ function App() {
             <div className="faq-layout">
               <p className="faq-ghost">FAQ</p>
               <div className="faq-list">
-              <details className="faq-item" open>
-                <summary className="faq-item__summary">
-                  <span>С чего начинается работа над проектом?</span>
-                </summary>
-                <div className="faq-item__content">
-                  <p>
-                    Начинаем с созвона и брейншторма: уточняем цели, аудиторию, текущие метрики и
-                    ограничения, формируем гипотезы и план работ по этапам.
-                  </p>
+              {[
+                { q: "С чего начинается работа над проектом?", a: "Начинаем с созвона и брейншторма: уточняем цели, аудиторию, текущие метрики и ограничения, формируем гипотезы и план работ по этапам." },
+                { q: "С какими проектами вы работаете?", a: "Фокусируемся на коммерческих сайтах и сервисах: лендинги, корпоративные сайты, e‑commerce, личные кабинеты и посадочные под продукты." },
+                { q: "Какие сроки разработки сайта?", a: "В среднем от 4 до 8 недель — в зависимости от объёма, количества экранов, интеграций и сложности анимаций." },
+                { q: "Что происходит после запуска?", a: "Следим за показателями, собираем обратную связь, дорабатываем сценарии и интерфейсы на основе данных аналитики." },
+                { q: "Вы сопровождаете проект после релиза?", a: "Да, можем взять проект на сопровождение: обновления, A/B‑тесты, доработка функционала и поддержка контента." },
+                { q: "Помогаете ли вы с контентом и наполнением сайта?", a: "Помогаем с текстами, структурой и визуалом: от контент‑плана до подготовки материалов для запуска." },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`faq-item${faqOpenIndex === i ? " faq-item--open" : ""}`}
+                  onMouseEnter={(e) => e.currentTarget.classList.add("faq-item--hover")}
+                  onMouseLeave={(e) => e.currentTarget.classList.remove("faq-item--hover")}
+                >
+                  <div
+                    className="faq-item__row"
+                    onClick={() => setFaqOpenIndex(i)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && setFaqOpenIndex(i)}
+                    aria-expanded={faqOpenIndex === i}
+                  >
+                    <span className="faq-item__summary">{item.q}</span>
+                    <span className="faq-item__icon" aria-hidden>{faqOpenIndex === i ? "−" : "+"}</span>
+                  </div>
+                  <div className="faq-item__content">
+                    <p>{item.a}</p>
+                  </div>
                 </div>
-              </details>
-
-              <details className="faq-item">
-                <summary className="faq-item__summary">
-                  <span>С какими проектами вы работаете?</span>
-                </summary>
-                <div className="faq-item__content">
-                  <p>
-                    Фокусируемся на коммерческих сайтах и сервисах: лендинги, корпоративные сайты,
-                    e‑commerce, личные кабинеты и посадочные под продукты.
-                  </p>
-                </div>
-              </details>
-
-              <details className="faq-item">
-                <summary className="faq-item__summary">
-                  <span>Какие сроки разработки сайта?</span>
-                </summary>
-                <div className="faq-item__content">
-                  <p>
-                    В среднем от 4 до 8 недель — в зависимости от объёма, количества экранов,
-                    интеграций и сложности анимаций.
-                  </p>
-                </div>
-              </details>
-
-              <details className="faq-item">
-                <summary className="faq-item__summary">
-                  <span>Что происходит после запуска?</span>
-                </summary>
-                <div className="faq-item__content">
-                  <p>
-                    Следим за показателями, собираем обратную связь, дорабатываем сценарии и
-                    интерфейсы на основе данных аналитики.
-                  </p>
-                </div>
-              </details>
-
-              <details className="faq-item">
-                <summary className="faq-item__summary">
-                  <span>Вы сопровождаете проект после релиза?</span>
-                </summary>
-                <div className="faq-item__content">
-                  <p>
-                    Да, можем взять проект на сопровождение: обновления, A/B‑тесты, доработка
-                    функционала и поддержка контента.
-                  </p>
-                </div>
-              </details>
-
-              <details className="faq-item">
-                <summary className="faq-item__summary">
-                  <span>Помогаете ли вы с контентом и наполнением сайта?</span>
-                </summary>
-                <div className="faq-item__content">
-                  <p>
-                    Помогаем с текстами, структурой и визуалом: от контент‑плана до подготовки
-                    материалов для запуска.
-                  </p>
-                </div>
-              </details>
+              ))}
               </div>
             </div>
           </div>

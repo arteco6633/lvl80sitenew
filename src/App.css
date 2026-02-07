@@ -342,28 +342,41 @@
 
 @media (max-width: 768px) {
   .hero-new__title {
-    font-size: 42px;
+    font-size: 50px;
+  }
+
+  .hero-new__buttons {
+    flex-wrap: nowrap;
+    gap: 12px;
+    justify-content: center;
   }
 
   /* На мобильных: тот же эффект через state (onFocus при тапе) */
   .hero-new__btn--gradient.hero-new__btn--expanded {
-    width: 100%;
-    max-width: 280px;
+    width: 50%;
+    max-width: 180px;
+    flex: 1 1 0;
+    min-width: 60px;
+  }
+
+  .hero-new__btn--gradient {
+    flex: 0 0 auto;
   }
 
   .hero-new__btn--gradient .hero-new__btn-text {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 960px) {
   .hero-new {
     margin-top: -80px;
-    padding: 160px 20px 60px;
+    padding: 160px 12px 60px;
   }
 
   .hero-new__content {
-    padding: 0 8px;
+    padding: 0 4px;
+    max-width: none;
   }
 
   /* Горизонтальный скролл карточек на мобильных */
@@ -434,7 +447,11 @@
 
 @media (max-width: 480px) {
   .hero-new {
-    padding-top: 180px;
+    padding: 180px 8px 60px;
+  }
+
+  .hero-new__content {
+    padding: 0 2px;
   }
 
   .hero-new__shape-wrap {

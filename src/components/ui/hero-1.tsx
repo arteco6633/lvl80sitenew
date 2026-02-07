@@ -92,8 +92,16 @@ export function Hero({
             onFocus={() => hasHoverRef.current && setActiveButton("primary")}
             onBlur={handleBlur}
             onClick={() => {
-              setActiveButton("primary")
-              onContactClick?.()
+              if (hasHoverRef.current) {
+                setActiveButton("primary")
+                onContactClick?.()
+              } else {
+                if (activeButton === "primary") {
+                  onContactClick?.()
+                } else {
+                  setActiveButton("primary")
+                }
+              }
             }}
           >
             <span className="hero-new__btn-gradient-bg" aria-hidden />
@@ -116,8 +124,16 @@ export function Hero({
             onFocus={() => hasHoverRef.current && setActiveButton("secondary")}
             onBlur={handleBlur}
             onClick={() => {
-              setActiveButton("secondary")
-              onAuditClick?.()
+              if (hasHoverRef.current) {
+                setActiveButton("secondary")
+                onAuditClick?.()
+              } else {
+                if (activeButton === "secondary") {
+                  onAuditClick?.()
+                } else {
+                  setActiveButton("secondary")
+                }
+              }
             }}
           >
             <span className="hero-new__btn-gradient-bg" aria-hidden />

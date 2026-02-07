@@ -13,7 +13,7 @@ function App() {
   const nichesBlockRef = useRef<HTMLDivElement>(null)
   const [servicesInView, setServicesInView] = useState(false)
   const [nichesInView, setNichesInView] = useState(false)
-  const [nichesFilter, setNichesFilter] = useState("")
+  const [nichesFilter] = useState("")
   const [contactModalOpen, setContactModalOpen] = useState(false)
   const [contactThankYou, setContactThankYou] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)

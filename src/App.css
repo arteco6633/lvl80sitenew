@@ -77,35 +77,158 @@
 }
 
 .hero-new__btn {
-  width: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
   height: 60px;
-  padding: 16px 36px;
+  padding: 0;
   font-size: 18px;
   font-weight: 400;
   font-family: 'Involve', 'Manrope', system-ui, sans-serif;
   border-radius: 9999px;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  overflow: hidden;
+  transition: width 0.5s ease, box-shadow 0.5s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Градиентный эффект (GradientMenu-подобный) */
+.hero-new__btn--gradient {
+  flex-shrink: 0;
+}
+
+.hero-new__btn--gradient.hero-new__btn--expanded {
+  width: 220px;
+}
+
+.hero-new__btn--gradient .hero-new__btn-gradient-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(45deg, var(--gradient-from), var(--gradient-to));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hero-new__btn--gradient .hero-new__btn-glow {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(45deg, var(--gradient-from), var(--gradient-to));
+  filter: blur(15px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+/* Иконка: видна по умолчанию, скрывается при hover */
+.hero-new__btn--gradient .hero-new__btn-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.5s ease;
+}
+
+.hero-new__btn--gradient .hero-new__btn-icon svg {
+  flex-shrink: 0;
+}
+
+.hero-new__btn--gradient.hero-new__btn--expanded .hero-new__btn-icon {
+  transform: scale(0);
+  pointer-events: none;
+}
+
+/* Текст: скрыт по умолчанию, раскрывается при hover */
+.hero-new__btn--gradient .hero-new__btn-text {
+  position: relative;
+  z-index: 10;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  transform: scale(0);
+  transition: transform 0.5s ease 0.15s, color 0.5s ease;
+}
+
+.hero-new__btn--gradient.hero-new__btn--expanded .hero-new__btn-text {
+  transform: scale(1);
+  color: #ffffff;
+}
+
+.hero-new__btn--gradient.hero-new__btn--expanded .hero-new__btn-gradient-bg {
+  opacity: 1;
+}
+
+.hero-new__btn--primary .hero-new__btn-gradient-bg {
+  background: #0a0a0a;
+}
+
+.hero-new__btn--primary .hero-new__btn-glow {
+  background: transparent;
+  opacity: 0;
+}
+
+.hero-new__btn--gradient.hero-new__btn--expanded .hero-new__btn-glow {
+  opacity: 0.5;
 }
 
 .hero-new__btn--primary {
   background: #0a0a0a;
-  color: #ffffff;
   border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-.hero-new__btn--primary:hover {
-  background: #333;
+.hero-new__btn--primary .hero-new__btn-icon {
+  color: #ffffff;
+}
+
+.hero-new__btn--primary .hero-new__btn-text {
+  color: #ffffff;
+}
+
+.hero-new__btn--primary.hero-new__btn--expanded {
+  background: transparent;
+  box-shadow: none;
 }
 
 .hero-new__btn--secondary {
   background: #ffffff;
-  color: #0a0a0a;
   border: 1px solid #0a0a0a;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-.hero-new__btn--secondary:hover {
-  background: #f5f5f5;
+.hero-new__btn--secondary .hero-new__btn-icon {
+  color: #0a0a0a;
+}
+
+.hero-new__btn--secondary .hero-new__btn-text {
+  color: #ffffff;
+}
+
+.hero-new__btn--secondary.hero-new__btn--expanded {
+  background: transparent;
+  border: 1px solid #0a0a0a;
+  box-shadow: none;
+}
+
+.hero-new__btn--secondary.hero-new__btn--expanded .hero-new__btn-gradient-bg {
+  opacity: 0;
+}
+
+.hero-new__btn--secondary.hero-new__btn--expanded .hero-new__btn-glow {
+  opacity: 0;
+}
+
+.hero-new__btn--secondary.hero-new__btn--expanded .hero-new__btn-text {
+  color: #0a0a0a;
 }
 
 .hero-new__shapes-wrapper {
@@ -222,16 +345,25 @@
     font-size: 42px;
   }
 
-  .hero-new__btn {
+  /* На мобильных: тот же эффект через state (onFocus при тапе) */
+  .hero-new__btn--gradient.hero-new__btn--expanded {
     width: 100%;
     max-width: 280px;
+  }
+
+  .hero-new__btn--gradient .hero-new__btn-text {
+    font-size: 13px;
   }
 }
 
 @media (max-width: 960px) {
   .hero-new {
     margin-top: -80px;
-    padding: 120px 28px 80px;
+    padding: 160px 20px 60px;
+  }
+
+  .hero-new__content {
+    padding: 0 8px;
   }
 
   /* Горизонтальный скролл карточек на мобильных */
@@ -241,9 +373,9 @@
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    margin-left: -28px;
-    margin-right: -28px;
-    padding: 0 28px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0 20px;
     touch-action: pan-x;
   }
 
@@ -301,6 +433,10 @@
 }
 
 @media (max-width: 480px) {
+  .hero-new {
+    padding-top: 180px;
+  }
+
   .hero-new__shape-wrap {
     min-height: 180px;
     width: min(300px, 88vw);
@@ -329,11 +465,6 @@
 
   .hero-new__title {
     font-size: 28px;
-  }
-
-  .hero-new__btn {
-    width: 100%;
-    max-width: 300px;
   }
 }
 
@@ -493,7 +624,17 @@
 @media (max-width: 960px) {
   .header {
     justify-content: space-between;
-    position: relative;
+    position: sticky;
+    top: 12px;
+    z-index: 50;
+    max-width: calc(100% - 24px);
+    padding: 12px 16px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .header__logo-text {
+    font-size: 14px;
   }
 
   .header__hamburger {
@@ -1070,6 +1211,65 @@
   .niches-card__text {
     font-size: 14px;
   }
+
+  .strategy-card {
+    height: auto;
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .strategy-section {
+    padding: 60px 0 0;
+  }
+
+  .strategy-section__inner {
+    padding: 40px 16px 0;
+  }
+
+  .strategy-section__ghost-title {
+    font-size: 40px;
+  }
+
+  .strategy-section__grid {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .strategy-card {
+    min-height: 320px;
+    padding: 16px 16px 16px 16px;
+  }
+
+  .strategy-card__title {
+    font-size: 32px;
+  }
+
+  .strategy-card__text {
+    font-size: 16px;
+  }
+
+  .strategy-card__number {
+    font-size: 32px;
+  }
+
+  .niches-block {
+    margin-top: 60px;
+  }
+
+  .niches-block__title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .niches-block__filters {
+    margin-bottom: 24px;
+  }
+
+  .niches-block__filter {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
 
 /* --- Блок «Наши проекты» — контейнер как у about, отступы 0 --- */
@@ -1133,6 +1333,50 @@
 
   .section--projects__inner {
     padding: 0 20px;
+  }
+
+  .section--projects .section__header {
+    margin-bottom: 24px;
+  }
+
+  .projects-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .projects-row--top .projects-strip__item,
+  .projects-row--top .projects-strip__item--wide,
+  .projects-row--bottom .projects-strip__item--wide {
+    width: 100%;
+    max-width: 100%;
+    height: 280px;
+    min-height: 280px;
+  }
+
+  .projects-row--bottom .projects-strip__item--wide {
+    height: 320px;
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section--projects .section__label {
+    font-size: 36px;
+  }
+
+  .section--projects__inner {
+    padding: 0 16px;
+  }
+
+  .projects-row--top .projects-strip__item--wide,
+  .projects-row--bottom .projects-strip__item--wide {
+    height: 220px;
+    min-height: 220px;
+  }
+
+  .projects-row--bottom .projects-strip__item--wide {
+    height: 260px;
+    min-height: 260px;
   }
 }
 
@@ -1390,8 +1634,44 @@
   }
 
   .cta__title {
-    font-size: 42px;
+    font-size: 32px;
     white-space: normal;
+  }
+
+  .cta__icon img {
+    width: 200px;
+    max-width: 100%;
+  }
+
+  .cta__text {
+    font-size: 16px;
+  }
+
+  .section--cta__inner {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section--cta {
+    padding: 40px 0 0;
+  }
+
+  .cta {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .cta__title {
+    font-size: 26px;
+  }
+
+  .cta__icon img {
+    width: 160px;
+  }
+
+  .cta__text {
+    font-size: 15px;
   }
 }
 
@@ -1562,7 +1842,64 @@
   }
 
   .tariffs__inner {
-    padding: 96px 20px 0;
+    padding: 60px 20px 0;
+  }
+
+  .tariffs-header {
+    margin-bottom: 48px;
+  }
+
+  .tariffs-header__ghost {
+    font-size: 48px;
+  }
+
+  .tariffs-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .tariff-card {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    min-height: 480px;
+  }
+
+  .tariff-card--active {
+    transform: none;
+  }
+
+  .tariff-card__title {
+    font-size: 32px;
+  }
+
+  .tariff-card__subtitle {
+    font-size: 16px;
+  }
+
+  .tariff-card__price {
+    margin: 40px 0 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tariffs-header__ghost {
+    font-size: 36px;
+  }
+
+  .tariff-card {
+    max-width: 100%;
+    padding: 24px 20px 20px;
+  }
+
+  .tariff-card__title {
+    font-size: 28px;
+  }
+
+  .tariff-card__row {
+    font-size: 16px;
   }
 }
 
@@ -1680,12 +2017,44 @@
     padding: 0 20px;
   }
 
+  .faq-ghost {
+    font-size: 52px;
+  }
+
   .faq-item__summary {
     font-size: 20px;
+    padding: 16px 0;
   }
 
   .faq-item__content p {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section--faq {
+    padding: 0 0 60px;
+  }
+
+  .faq__inner {
+    padding: 0 16px;
+  }
+
+  .faq-ghost {
+    font-size: 40px;
+  }
+
+  .faq-layout {
+    gap: 32px;
+  }
+
+  .faq-item__summary {
+    font-size: 17px;
+    padding: 14px 0;
+  }
+
+  .faq-item__content p {
+    font-size: 15px;
   }
 }
 
@@ -1947,7 +2316,61 @@
 
   .contacts-top {
     grid-template-columns: 1fr;
-    padding: 40px 24px 40px;
+    padding: 32px 24px 32px;
+    gap: 32px;
+  }
+
+  .contacts-top__title {
+    font-size: 48px;
+  }
+
+  .contacts-top__subtitle {
+    font-size: 16px;
+  }
+
+  .contacts-top__grid {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .contacts__watermark {
+    font-size: 48px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section--contacts {
+    padding: 0 0 50px;
+  }
+
+  .contacts__inner {
+    padding: 0 16px;
+  }
+
+  .contacts-top {
+    padding: 24px 16px 24px;
+  }
+
+  .contacts-top__title {
+    font-size: 36px;
+  }
+
+  .contacts-top__subtitle {
+    font-size: 15px;
+  }
+
+  .contacts-top__cell h3 {
+    font-size: 20px;
+  }
+
+  .contacts-top__cell p {
+    font-size: 16px;
+  }
+
+  .contacts__watermark {
+    font-size: 36px;
+    left: 16px;
   }
 }
 
@@ -2043,6 +2466,35 @@
 @media (max-width: 960px) {
   .footer__inner {
     padding: 0 20px;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer__columns {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer__columns h3 {
+    font-size: 20px;
+  }
+
+  .footer__columns p {
+    font-size: 16px;
+  }
+
+  .footer__bottom {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__inner {
+    padding: 0 16px;
+  }
+
+  .footer__columns h3 {
+    font-size: 18px;
   }
 }
 

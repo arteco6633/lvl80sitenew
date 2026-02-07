@@ -71,10 +71,15 @@ body,
   height: 100%;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
   background: #070707;
   color: var(--text-primary);
   font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',

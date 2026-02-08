@@ -97,7 +97,7 @@ function App() {
 
         <section id="services" className="strategy-section" ref={servicesSectionRef}>
           <div className="strategy-section__inner">
-            <div className="strategy-section__ghost-title"><span className="text-white">От стратегии до запуска</span><span className="strategy-section__ghost-dot" aria-hidden /></div>
+            <div className="strategy-section__ghost-title"><span className="text-white">От стратегии<br className="strategy-section__ghost-br" />до запуска</span><span className="strategy-section__ghost-dot" aria-hidden /></div>
             <div className={`strategy-section__grid${servicesInView ? " strategy-section__grid--in-view" : ""}`}>
               <div className="strategy-section__glow" aria-hidden="true" />
               <article className="strategy-card">

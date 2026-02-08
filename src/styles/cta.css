@@ -1,0 +1,208 @@
+/* --- CTA-блок с ракетой --- */
+.section--cta {
+  position: relative;
+  padding: 96px 0 0;
+  background: #050505;
+  border-radius: 0;
+  border: none;
+  overflow: hidden;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.section--cta__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section--cta::before {
+  content: '';
+  position: absolute;
+  left: -120px;
+  top: 80%;
+  width: 520px;
+  height: 520px;
+  transform: translateY(-50%);
+  background: url(/cta-bg.svg) no-repeat center / contain;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 28px 36px;
+  border-radius: 10px;
+  background: rgba(8, 8, 8, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.cta__icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta__icon img {
+  width: 360px;
+  height: auto;
+  display: block;
+}
+
+.cta__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta__title {
+  margin: 0 0 12px;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.cta__title-italic {
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.cta__text {
+  margin: 0;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(241, 241, 241, 0.8);
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta__button {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 60px;
+  padding: 0;
+  border-radius: 9999px;
+  border: none;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cta__button:hover {
+  background: #f5f5f5;
+}
+
+@media (max-width: 960px) {
+  .section--cta {
+    padding: 60px 0 0;
+  }
+
+  .section--cta__inner {
+    padding: 0;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 26px 22px;
+    text-align: center;
+  }
+
+  .cta__title {
+    font-size: 32px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .cta__text {
+    text-align: center;
+  }
+
+  .cta__button {
+    width: 180px;
+    height: 60px;
+  }
+
+  .cta__icon img {
+    width: 200px;
+    max-width: 100%;
+  }
+
+  .cta__text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section--cta {
+    padding: 40px 0 0;
+  }
+
+  .section--cta__inner {
+    padding: 0;
+  }
+
+  .cta {
+    padding: 20px 16px;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta__title {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .cta__icon img {
+    width: 160px;
+  }
+
+  .cta__text {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .cta__button {
+    width: 180px;
+    height: 60px;
+    font-size: 12px;
+  }
+}
+

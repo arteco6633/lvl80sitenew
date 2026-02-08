@@ -70,9 +70,9 @@ const StatusIcon: React.FC<StatusIconProps> = ({ status }) => {
 export interface SlideButtonProps extends Omit<ButtonProps, "onSubmit"> {
   /**
    * Called when user drags to complete. Return true to proceed with success state,
-   * false to reset the button (e.g. form validation failed).
+   * false to reset the button (e.g. form validation failed). Supports async.
    */
-  onSubmit?: () => boolean | void
+  onSubmit?: () => boolean | void | Promise<boolean | void>
 }
 
 const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
@@ -92,10 +92,12 @@ const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
       [0, 1]
     )
 
-    const handleSubmit = useCallback(() => {
-      const shouldProceed = onSubmit?.()
+    const handleSubmit = useCallback(async () => {
+      const result = onSubmit?.()
+      const shouldProceed = result instanceof Promise ? await result : result
       if (shouldProceed === false) {
         setCompleted(false)
+        setStatus("error")
         dragX.set(0)
         return
       }

@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { X, User, Phone, Mail } from "lucide-react"
 import { SlideButton } from "./slide-button"
+import { submitContactForm } from "../../lib/supabase"
 
 interface ContactModalProps {
   isOpen: boolean
@@ -17,19 +18,25 @@ export function ContactModal({
   showThankYou,
   onFormSubmit,
 }: ContactModalProps) {
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const previousActiveRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     if (!isOpen) return
+    previousActiveRef.current = document.activeElement as HTMLElement | null
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
     }
     document.addEventListener("keydown", handleEscape)
     document.body.style.overflow = "hidden"
+    requestAnimationFrame(() => closeButtonRef.current?.focus())
     return () => {
       document.removeEventListener("keydown", handleEscape)
       document.body.style.overflow = ""
+      previousActiveRef.current?.focus?.()
     }
   }, [isOpen, onClose])
 
@@ -55,6 +62,7 @@ export function ContactModal({
     >
       <div className="contact-modal">
         <button
+          ref={closeButtonRef}
           type="button"
           className="contact-modal__close"
           onClick={onClose}
@@ -140,12 +148,26 @@ export function ContactModal({
                 <input type="checkbox" required />
                 <span>Согласен с обработкой вот этого вот всего</span>
               </label>
+              {submitError && <p className="contact-modal__error" role="alert">{submitError}</p>}
               <div className="contact-modal__slide-btn-wrap">
                 <SlideButton
-                  onSubmit={() => {
+                  onSubmit={async () => {
                     if (!formRef.current?.reportValidity()) return false
-                    onFormSubmit()
-                    return true
+                    setSubmitError(null)
+                    const form = formRef.current
+                    const data = {
+                      name: (form.elements.namedItem("name") as HTMLInputElement).value.trim(),
+                      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
+                      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+                      source: "modal" as const,
+                    }
+                    const { ok, error } = await submitContactForm(data)
+                    if (ok) {
+                      onFormSubmit()
+                      return true
+                    }
+                    setSubmitError(error || "Ошибка отправки")
+                    return false
                   }}
                 />
               </div>

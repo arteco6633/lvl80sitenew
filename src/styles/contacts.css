@@ -1,0 +1,315 @@
+.section--contacts {
+  position: relative;
+  padding: 0 0 180px;
+  background: #050505;
+  border: none;
+  overflow: visible;
+}
+
+.contacts__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.contacts__watermark {
+  position: absolute;
+  left: 48px;
+  bottom: 50px;
+  font-family: 'Apparel Display', 'Times New Roman', serif;
+  font-size: 70px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contacts-top {
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 48px 50px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: grid;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-weight: 400;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.contacts-top__text {
+  min-width: 0;
+}
+
+.contacts-top__title {
+  margin: 0 0 18px;
+  font-size: 64px;
+  font-weight: 300;
+  color: #000000;
+}
+
+.contacts-top__title-italic {
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.contacts-top__subtitle {
+  margin: 0 0 32px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555555;
+  max-width: 420px;
+}
+
+.contacts-top__grid {
+  display: flex;
+  gap: 60px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.contacts-top__cell h3 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.contacts-top__cell p {
+  margin: 0;
+  font-size: 18px;
+  color: #555555;
+}
+
+.contacts-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.contacts-form__field label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #777777;
+  padding: 10px 0 4px;
+}
+
+.contacts-form__field input,
+.contacts-form__field textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 8px 0 10px;
+  font-size: 14px;
+  color: #000000;
+  background: transparent;
+  outline: none;
+}
+
+.contacts-form__field input::placeholder,
+.contacts-form__field textarea::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.contacts-form__field input:focus,
+.contacts-form__field textarea:focus {
+  border-bottom-color: #000000;
+}
+
+.contacts-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #777777;
+}
+
+.contacts-form__checkbox input {
+  width: 14px;
+  height: 14px;
+}
+
+.contacts-form__submit {
+  margin-top: 16px;
+  align-self: flex-start;
+  padding: 10px 32px;
+  border-radius: 2px;
+  border: none;
+  background: #000000;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contacts-form__submit:hover {
+  background: #111111;
+}
+
+.contacts-form__success {
+  padding: 24px 0;
+  text-align: center;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+}
+
+.contacts-form__success p {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #000000;
+}
+
+.contacts-form__success-note {
+  font-size: 13px;
+  color: #666666;
+}
+
+.contacts-form__error {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #c00;
+}
+
+@media (max-width: 960px) {
+  .section--contacts {
+    padding: 0 0 70px;
+  }
+
+  .contacts__inner {
+    padding: 0;
+  }
+
+  .contacts-top {
+    grid-template-columns: 1fr;
+    padding: 32px 24px 32px;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .contacts-top__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contacts-top__title {
+    font-size: 48px;
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    text-align: center;
+  }
+
+  .contacts-top__subtitle {
+    font-size: 16px;
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contacts-top__grid {
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contacts-form {
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .contacts-form__field label {
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-form__field input,
+  .contacts-form__field textarea {
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-form__checkbox {
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-form__submit {
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    align-self: center;
+    width: 180px;
+    height: 60px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+  }
+
+  .contacts__watermark {
+    font-size: 48px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section--contacts {
+    padding: 0 0 50px;
+  }
+
+  .contacts__inner {
+    padding: 0;
+  }
+
+  .contacts-top {
+    padding: 24px 16px 24px;
+    text-align: center;
+  }
+
+  .contacts-top__title {
+    font-size: 32px;
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-top__subtitle {
+    font-size: 14px;
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-top__cell h3 {
+    font-size: 18px;
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-top__cell p {
+    font-size: 14px;
+    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-form__field label {
+    font-size: 14px;
+  }
+
+  .contacts-form__checkbox {
+    font-size: 12px;
+  }
+
+  .contacts-form__submit {
+    width: 180px;
+    height: 60px;
+    font-size: 12px;
+  }
+
+  .contacts__watermark {
+    font-size: 36px;
+    left: 16px;
+  }
+}
+

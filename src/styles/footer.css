@@ -1,0 +1,158 @@
+.footer {
+  position: relative;
+  margin-top: auto;
+  padding: 0 0 60px;
+  background: #050505;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-weight: 400;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 24px 48px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.footer__apps-icon {
+  position: absolute;
+  right: -200px;
+  bottom: -200px;
+  width: 480px;
+  height: 480px;
+  object-fit: contain;
+  opacity: 0.9;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.footer__icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer__icons img {
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.footer__icons img:hover {
+  opacity: 1;
+}
+
+.footer__icons img:nth-child(3) {
+  margin-top: 6px;
+}
+
+.footer__columns {
+  display: flex;
+  gap: 48px;
+}
+
+.footer__columns h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.footer__columns p {
+  margin: 0 0 6px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer__columns p:last-child {
+  margin-bottom: 0;
+}
+
+.footer__bottom {
+  width: 100%;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 960px) {
+  .footer__inner {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__columns {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__columns h3 {
+    font-size: 20px;
+  }
+
+  .footer__columns p {
+    font-size: 16px;
+  }
+
+  .footer__bottom {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__inner {
+    padding: 0 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__columns {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__columns h3 {
+    font-size: 18px;
+  }
+
+  .footer__columns p {
+    font-size: 14px;
+  }
+
+  .footer__bottom {
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .page {
+    padding-top: 20px;
+  }
+
+  .section {
+    padding: 18px 16px 20px;
+  }
+
+  .hero__content {
+    padding: 20px 18px 20px;
+  }
+}

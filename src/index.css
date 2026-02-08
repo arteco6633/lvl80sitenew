@@ -139,34 +139,3 @@ img {
   font-family: "Apparel Display", "Times New Roman", serif;
   font-style: italic;
 }
-
-/* Заметное мигание неона */
-@keyframes neon-flicker {
-  0%, 100% {
-    opacity: 1;
-    filter: brightness(1);
-    text-shadow:
-      0 0 12px rgba(255, 92, 16, 0.9),
-      0 0 24px rgba(255, 92, 16, 0.5),
-      0 0 40px rgba(255, 92, 16, 0.25);
-  }
-  50% {
-    opacity: 0.78;
-    filter: brightness(0.85);
-    text-shadow:
-      0 0 8px rgba(255, 92, 16, 0.6),
-      0 0 16px rgba(255, 92, 16, 0.35),
-      0 0 28px rgba(255, 92, 16, 0.15);
-  }
-}
-
-/* Неоновое свечение для акцентных слов в hero */
-.hero-title-neon {
-  color: #ff5c10;
-  text-shadow:
-    0 0 12px rgba(255, 92, 16, 0.9),
-    0 0 24px rgba(255, 92, 16, 0.5),
-    0 0 40px rgba(255, 92, 16, 0.25);
-  animation: neon-flicker 2.5s ease-in-out infinite;
-}
-

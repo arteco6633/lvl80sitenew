@@ -1,0 +1,5 @@
+# Замените lvl80.agency на ваш домен при деплое
+User-agent: *
+Allow: /
+
+Sitemap: https://lvl80.agency/sitemap.xml

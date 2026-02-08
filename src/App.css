@@ -818,8 +818,8 @@
   font-size: 66px;
   font-weight: 400;
   font-style: normal;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: #ffffff;
   pointer-events: none;
 }
@@ -1169,7 +1169,7 @@
     left: 0;
     right: 0;
     text-align: center;
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .strategy-section__ghost-br {
@@ -1177,14 +1177,14 @@
   }
 
   .strategy-section__grid {
-    margin-top: 72px; /* заголовок 36px + 36px отступ */
+    margin-top: 96px;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 16px;
   }
 
   .strategy-card__title {
-    font-size: 36px;
+    font-size: 20px;
     margin-bottom: 12px;
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -1199,9 +1199,19 @@
   }
 
   .strategy-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: auto;
     min-height: 360px;
     text-align: center;
+  }
+
+  .strategy-card::before {
+    content: '';
+    flex: 0.4;
+    min-height: 0;
   }
 
   .strategy-card__title {
@@ -1213,6 +1223,12 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
+  }
+
+  .strategy-card::after {
+    content: '';
+    flex: 1;
+    min-height: 0;
   }
 
   .strategy-card__number {
@@ -1229,6 +1245,10 @@
   .niches-block__title {
     font-size: 40px;
     margin-bottom: 24px;
+  }
+
+  .niches-block__dot {
+    display: none;
   }
 
   .niches-block__filters {
@@ -1303,32 +1323,49 @@
     left: 0;
     right: 0;
     text-align: center;
+    font-size: 32px;
   }
 
   .strategy-section__grid {
-    margin-top: 72px;
+    margin-top: 96px;
     gap: 16px;
   }
 
   .strategy-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 280px;
     padding: 20px 16px;
   }
 
+  .strategy-card::before {
+    content: '';
+    flex: 0.4;
+    min-height: 0;
+  }
+
+  .strategy-card::after {
+    content: '';
+    flex: 1;
+    min-height: 0;
+  }
+
   .strategy-card__title {
-    font-size: 28px;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .strategy-card__text {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.55;
   }
 
   .strategy-card__number {
-    font-size: 28px;
+    font-size: 18px;
   }
 
   .niches-block {
@@ -1358,6 +1395,10 @@
   .niches-block__title {
     font-size: 32px;
     margin-bottom: 20px;
+  }
+
+  .niches-block__dot {
+    display: none;
   }
 
   .niches-block__filters {
@@ -1486,7 +1527,7 @@
 
 @media (max-width: 480px) {
   .section--projects .section__label {
-    font-size: 36px;
+    font-size: 32px;
     text-align: center;
   }
 
@@ -1840,7 +1881,7 @@
   }
 
   .cta__title {
-    font-size: 26px;
+    font-size: 32px;
     text-align: center;
   }
 
@@ -1849,13 +1890,14 @@
   }
 
   .cta__text {
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
   }
 
   .cta__button {
     width: 180px;
     height: 60px;
+    font-size: 12px;
   }
 }
 
@@ -2094,7 +2136,7 @@
   }
 
   .tariffs-header__ghost {
-    font-size: 36px;
+    font-size: 32px;
     text-align: center;
   }
 
@@ -2104,16 +2146,25 @@
   }
 
   .tariff-card__title {
-    font-size: 28px;
+    font-size: 18px;
+  }
+
+  .tariff-card__subtitle {
+    font-size: 14px;
+  }
+
+  .tariff-card__price {
+    font-size: 18px;
   }
 
   .tariff-card__row {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .tariff-card__btn {
     width: 180px;
     height: 60px;
+    font-size: 12px;
   }
 }
 
@@ -2255,7 +2306,7 @@
   }
 
   .faq-ghost {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .faq-layout {
@@ -2263,12 +2314,12 @@
   }
 
   .faq-item__summary {
-    font-size: 17px;
+    font-size: 18px;
     padding: 14px 0;
   }
 
   .faq-item__content p {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
@@ -2563,9 +2614,9 @@
   }
 
   .contacts-form {
-    align-items: center;
+    align-items: stretch;
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
   }
 
   .contacts-form__field label {
@@ -2613,28 +2664,37 @@
   }
 
   .contacts-top__title {
-    font-size: 36px;
+    font-size: 32px;
     font-family: 'Involve', 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-top__subtitle {
-    font-size: 15px;
+    font-size: 14px;
     font-family: 'Involve', 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-top__cell h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Involve', 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-top__cell p {
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  }
+
+  .contacts-form__field label {
+    font-size: 14px;
+  }
+
+  .contacts-form__checkbox {
+    font-size: 12px;
   }
 
   .contacts-form__submit {
     width: 180px;
     height: 60px;
+    font-size: 12px;
   }
 
   .contacts__watermark {
@@ -2776,6 +2836,10 @@
 
   .footer__columns h3 {
     font-size: 18px;
+  }
+
+  .footer__columns p {
+    font-size: 14px;
   }
 
   .footer__bottom {

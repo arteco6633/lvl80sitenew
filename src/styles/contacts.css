@@ -35,7 +35,7 @@
   background: #ffffff;
   border-radius: 10px;
   display: grid;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 48px;
@@ -56,7 +56,7 @@
 }
 
 .contacts-top__title-italic {
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
 }
 
@@ -160,7 +160,7 @@
 .contacts-form__success {
   padding: 24px 0;
   text-align: center;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
 }
 
 .contacts-form__success p {
@@ -204,13 +204,13 @@
 
   .contacts-top__title {
     font-size: 48px;
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     text-align: center;
   }
 
   .contacts-top__subtitle {
     font-size: 16px;
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -230,20 +230,20 @@
   }
 
   .contacts-form__field label {
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-form__field input,
   .contacts-form__field textarea {
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-form__checkbox {
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-form__submit {
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     align-self: center;
     width: 180px;
     height: 60px;
@@ -275,22 +275,22 @@
 
   .contacts-top__title {
     font-size: 32px;
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-top__subtitle {
     font-size: 14px;
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-top__cell h3 {
     font-size: 18px;
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-top__cell p {
     font-size: 14px;
-    font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   .contacts-form__field label {

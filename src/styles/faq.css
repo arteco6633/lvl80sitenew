@@ -13,7 +13,7 @@
   padding: 0;
   position: relative;
   box-sizing: border-box;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
 }
 
@@ -25,7 +25,7 @@
 
 .faq-ghost {
   margin: 0;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 66px;
   font-style: normal;
   font-weight: 400;
@@ -98,6 +98,7 @@
 
 .faq-item__content p {
   margin: 0;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 18px;
   line-height: 1.7;
   color: #9ca3af;

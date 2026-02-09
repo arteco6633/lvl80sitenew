@@ -13,13 +13,28 @@
   position: relative;
   box-sizing: border-box;
   display: flex;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 24px 48px;
   align-items: flex-start;
   justify-content: flex-start;
+}
+
+@keyframes footer-bg-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-15px, -20px) scale(1.02);
+  }
+  50% {
+    transform: translate(10px, -10px) scale(0.98);
+  }
+  75% {
+    transform: translate(-10px, 15px) scale(1.01);
+  }
 }
 
 .footer__apps-icon {
@@ -32,6 +47,7 @@
   opacity: 0.9;
   z-index: 1;
   pointer-events: none;
+  animation: footer-bg-float 12s ease-in-out infinite;
 }
 
 .footer__icons {
@@ -83,6 +99,7 @@
   margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.5);
 }

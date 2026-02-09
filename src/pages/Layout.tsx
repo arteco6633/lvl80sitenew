@@ -35,11 +35,11 @@ export function Layout() {
       <header className="header">
         {location.pathname === "/" ? (
           <div className="header__logo">
-            <span className="header__logo-text">LVL 80.AGENCY</span>
+            <span className="header__logo-text"><span className="header__logo-text--black">АП</span>ЕКС</span>
           </div>
         ) : (
           <Link to="/" className="header__logo">
-            <span className="header__logo-text">LVL 80.AGENCY</span>
+            <span className="header__logo-text"><span className="header__logo-text--black">АП</span>ЕКС</span>
           </Link>
         )}
         <div className="header__desktop">

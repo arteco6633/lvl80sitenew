@@ -148,15 +148,14 @@ export function Hero({
 
       <div className="hero-new__shapes-wrapper">
         <div className="hero-new__shapes">
-        {heroCards.map((card) => (
+        {heroCards.map((card, index) => (
           <div key={card.title} className="hero-new__shape-wrap">
-            <div className="hero-new__shape-header">
-              <h3 className="hero-new__shape-title">{card.title}</h3>
-            </div>
-            <img src="/Card-1.svg" alt="" className="hero-new__shape" aria-hidden />
-            <div className="hero-new__shape-content">
-              <p className="hero-new__shape-text">{card.text}</p>
-            </div>
+            <img
+              src={index === 1 ? "/Card-3.svg" : index === 2 ? "/Card-4.svg" : "/Property-1-Default-4.svg"}
+              alt=""
+              className="hero-new__shape"
+              aria-hidden
+            />
           </div>
         ))}
         </div>

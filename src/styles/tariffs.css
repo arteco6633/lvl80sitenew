@@ -14,7 +14,7 @@
   padding: 96px 0 0;
   position: relative;
   box-sizing: border-box;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
 }
 
@@ -25,7 +25,7 @@
 
 .tariffs-header__ghost {
   margin: 0;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 64px;
   font-style: normal;
   font-weight: 400;
@@ -35,7 +35,7 @@
 }
 
 .tariffs-header__ghost-manrope {
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: -0.02em;
@@ -43,7 +43,7 @@
 }
 
 .tariffs-header__ghost-accent {
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   color: #ffffff;
   margin-left: 0;
   letter-spacing: -0.02em;
@@ -160,7 +160,7 @@
   border: none;
   background: #ffffff;
   color: #0a0a0a;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.05em;

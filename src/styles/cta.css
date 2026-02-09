@@ -6,7 +6,7 @@
   border-radius: 0;
   border: none;
   overflow: hidden;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
 }
 
@@ -63,20 +63,30 @@
   width: 360px;
   height: auto;
   display: block;
+  animation: cta-rocket-float 4s ease-in-out infinite;
+}
+
+@keyframes cta-rocket-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .cta__content {
   position: relative;
   z-index: 1;
   max-width: 680px;
-  text-align: center;
+  text-align: left;
   margin-left: auto;
   margin-right: auto;
 }
 
 .cta__title {
   margin: 0 0 12px;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 42px;
   font-style: normal;
   font-weight: 400;
@@ -86,7 +96,7 @@
 }
 
 .cta__title-italic {
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-style: normal;
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -94,13 +104,12 @@
 
 .cta__text {
   margin: 0;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 18px;
   line-height: 1.6;
   color: rgba(241, 241, 241, 0.8);
   max-width: 620px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: left;
 }
 
 .cta__button {
@@ -108,14 +117,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 220px;
-  height: 60px;
+  width: 257px;
+  height: 46px;
   padding: 0;
   border-radius: 9999px;
   border: none;
   background: #ffffff;
   color: #0a0a0a;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.05em;
@@ -153,12 +162,12 @@
   }
 
   .cta__text {
-    text-align: center;
+    text-align: left;
   }
 
   .cta__button {
     width: 180px;
-    height: 60px;
+    height: 46px;
   }
 
   .cta__icon img {
@@ -198,12 +207,12 @@
 
   .cta__text {
     font-size: 14px;
-    text-align: center;
+    text-align: left;
   }
 
   .cta__button {
     width: 180px;
-    height: 60px;
+    height: 46px;
     font-size: 12px;
   }
 }

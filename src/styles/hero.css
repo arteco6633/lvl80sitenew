@@ -310,7 +310,7 @@
 
 .hero-new__shape-text {
   margin: 0;
-  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 400;
   font-size: clamp(14px, 1.4vw + 0.6rem, 18px);
   line-height: 1.5;

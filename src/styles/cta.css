@@ -113,18 +113,20 @@
   padding: 0;
   border-radius: 9999px;
   border: none;
-  background: #0a0a0a;
-  color: #ffffff;
+  background: #ffffff;
+  color: #0a0a0a;
   font-family: 'Involve', 'Manrope', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
 .cta__button:hover {
-  background: #f5f5f5;
+  background: #ff5c10;
+  color: #ffffff;
 }
 
 @media (max-width: 960px) {

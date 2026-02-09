@@ -22,7 +22,7 @@ export function ServicesSection({
       <div className="strategy-section__inner">
         <h2 className="strategy-section__ghost-title">
           <span className="text-white">
-            От стратегии<br className="strategy-section__ghost-br" />до запуска
+            От стратегии<br className="strategy-section__ghost-br" /> до запуска
           </span>
           <span className="strategy-section__ghost-dot" aria-hidden />
         </h2>
@@ -109,7 +109,7 @@ export function ServicesSection({
                   <img src="/niches-icon.svg" alt="" width={48} height={48} />
                 </div>
                 <h3 className="niches-card__title">Входящий поток</h3>
-                <p className="niches-card__text">Сайт начинает приводить клиентов из поиска и нейросетей и работает как самостоятельный канал привлечения, а не только как поддержка рекламы.</p>
+                <p className="niches-card__text">Сайт начинает приводить клиентов из поиска и нейросетей, и работает как самостоятельный канал привлечения, а не только как поддержка рекламы.</p>
               </article>
             </div>
             <div className="niches-block__row">

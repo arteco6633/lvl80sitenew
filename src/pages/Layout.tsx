@@ -3,6 +3,7 @@ import { createPortal } from "react-dom"
 import { Link, Outlet, useLocation } from "react-router-dom"
 import { Menu, X } from "lucide-react"
 import { ContactModal } from "../components/ui/contact-modal"
+import { CookieConsent } from "../components/ui/cookie-consent"
 import { FooterSection } from "../sections/FooterSection"
 import { ContactModalContext } from "../contexts/ContactModalContext"
 
@@ -35,11 +36,11 @@ export function Layout() {
       <header className="header">
         {location.pathname === "/" ? (
           <div className="header__logo">
-            <span className="header__logo-text"><span className="header__logo-text--black">АП</span>ЕКС</span>
+            <img src="/Apex-logo.svg" alt="АПЕКС" className="header__logo-img" width={120} height={28} />
           </div>
         ) : (
           <Link to="/" className="header__logo">
-            <span className="header__logo-text"><span className="header__logo-text--black">АП</span>ЕКС</span>
+            <img src="/Apex-logo.svg" alt="АПЕКС" className="header__logo-img" width={120} height={28} />
           </Link>
         )}
         <div className="header__desktop">
@@ -119,6 +120,8 @@ export function Layout() {
         showThankYou={contactThankYou}
         onFormSubmit={() => setContactThankYou(true)}
       />
+
+      <CookieConsent />
     </div>
     </ContactModalContext.Provider>
   )

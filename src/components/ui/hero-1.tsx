@@ -151,7 +151,7 @@ export function Hero({
         {heroCards.map((card, index) => (
           <div key={card.title} className="hero-new__shape-wrap">
             <img
-              src={index === 1 ? "/Card-3.svg" : index === 2 ? "/Card-4.svg" : "/Property-1-Default-4.svg"}
+              src={index === 0 ? "/Card-5.svg" : index === 1 ? "/Card-6.svg" : "/Card-5.svg"}
               alt=""
               className="hero-new__shape"
               aria-hidden

@@ -5,8 +5,8 @@ export function FooterSection() {
         <div className="footer__columns">
           <div>
             <h3>Контакты</h3>
-            <p>+ 375 (33) 392‑55‑55</p>
-            <p>email: info@mke.by</p>
+            <p><a href="tel:+79664458595">8&nbsp;966&nbsp;445&nbsp;85&nbsp;95</a></p>
+            <p>email: info.apex@bk.ru</p>
           </div>
           <div>
             <h3>О нас</h3>

@@ -95,6 +95,7 @@ export function HomePage() {
         isOpen={projectModalOpen}
         onClose={closeProjectModal}
         project={selectedProject}
+        onOpenForm={openContactModal}
       />
     </>
   )

@@ -73,7 +73,7 @@ function App() {
     <div className="page">
       <header className="header">
         <div className="header__logo">
-          <span className="header__logo-text"><span className="header__logo-text--black">АП</span>ЕКС</span>
+          <img src="/Apex-logo.svg" alt="АПЕКС" className="header__logo-img" width={120} height={28} />
         </div>
         <button
           type="button"
@@ -148,6 +148,7 @@ function App() {
         isOpen={projectModalOpen}
         onClose={closeProjectModal}
         project={selectedProject}
+        onOpenForm={openContactModal}
       />
     </div>
   )

@@ -23,9 +23,11 @@ interface ProjectModalProps {
   isOpen: boolean
   onClose: () => void
   project: ProjectData | null
+  /** При нажатии «Презентация» — закрыть модалку и открыть форму связи */
+  onOpenForm?: () => void
 }
 
-export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
+export function ProjectModal({ isOpen, onClose, project, onOpenForm }: ProjectModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const previousActiveRef = useRef<HTMLElement | null>(null)
@@ -72,46 +74,63 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
           <X className="project-modal__close-icon" strokeWidth={2} />
         </button>
 
-        {project.image && (
-          <div className="project-modal__image-wrap">
-            <img
-              src={project.image}
-              alt={project.imageAlt || project.title}
-              className="project-modal__image"
-              decoding="async"
-            />
+        <div className="project-modal__scroll">
+          {project.image && (
+            <div className="project-modal__image-wrap">
+              <img
+                src={project.image}
+                alt={project.imageAlt || project.title}
+                className="project-modal__image"
+                decoding="async"
+              />
+            </div>
+          )}
+
+          <div className="project-modal__content">
+            <h2 className="project-modal__title" id="project-modal-title">
+              {project.title}
+              <span className="project-modal__dot" aria-hidden />
+            </h2>
+
+            {project.tags.length > 0 && (
+              <div className="project-modal__tags">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="project-modal__tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <p className="project-modal__intro">{project.description}</p>
+
+            {project.sections && project.sections.length > 0 && (
+              <div className="project-modal__sections">
+                {project.sections.map((section, index) => (
+                  <section key={index} className="project-modal__section">
+                    <h3 className="project-modal__section-title">{section.title}</h3>
+                    <p className="project-modal__section-content">{section.content}</p>
+                  </section>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {onOpenForm && (
+          <div className="project-modal__footer">
+            <button
+              type="button"
+              className="project-modal__btn"
+              onClick={() => {
+                onClose()
+                onOpenForm()
+              }}
+            >
+              Презентация
+            </button>
           </div>
         )}
-
-        <div className="project-modal__content">
-          <h2 className="project-modal__title" id="project-modal-title">
-            {project.title}
-            <span className="project-modal__dot" aria-hidden />
-          </h2>
-
-          {project.tags.length > 0 && (
-            <div className="project-modal__tags">
-              {project.tags.map((tag) => (
-                <span key={tag} className="project-modal__tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <p className="project-modal__intro">{project.description}</p>
-
-          {project.sections && project.sections.length > 0 && (
-            <div className="project-modal__sections">
-              {project.sections.map((section, index) => (
-                <section key={index} className="project-modal__section">
-                  <h3 className="project-modal__section-title">{section.title}</h3>
-                  <p className="project-modal__section-content">{section.content}</p>
-                </section>
-              ))}
-            </div>
-          )}
-        </div>
       </div>
     </div>
   )

@@ -99,14 +99,14 @@ export function ServicesSection({
             <div className="niches-block__row">
               <article className="niches-card niches-card--1">
                 <div className="niches-card__icon" aria-hidden>
-                  <img src="/niches-icon.svg" alt="" width={48} height={48} />
+                  <img src="/Icon.svg" alt="" width={48} height={48} />
                 </div>
                 <h3 className="niches-card__title">Позиционирование</h3>
                 <p className="niches-card__text">Посетитель за первые секунды понимает, кто вы, какую задачу решаете и почему к вам имеет смысл обратиться именно сейчас.</p>
               </article>
               <article className="niches-card niches-card--2">
                 <div className="niches-card__icon" aria-hidden>
-                  <img src="/niches-icon.svg" alt="" width={48} height={48} />
+                  <img src="/2.svg" alt="" width={48} height={48} />
                 </div>
                 <h3 className="niches-card__title">Входящий поток</h3>
                 <p className="niches-card__text">Сайт начинает приводить клиентов из поиска и нейросетей, и работает как самостоятельный канал привлечения, а не только как поддержка рекламы.</p>
@@ -115,21 +115,21 @@ export function ServicesSection({
             <div className="niches-block__row">
               <article className="niches-card niches-card--3">
                 <div className="niches-card__icon" aria-hidden>
-                  <img src="/niches-icon.svg" alt="" width={48} height={48} />
+                  <img src="/3.svg" alt="" width={48} height={48} />
                 </div>
                 <h3 className="niches-card__title">Конверсия</h3>
                 <p className="niches-card__text">Структура и пользовательские сценарии выстроены так, чтобы больше посетителей доходили до заявки с того же объёма трафика.</p>
               </article>
               <article className="niches-card niches-card--4">
                 <div className="niches-card__icon" aria-hidden>
-                  <img src="/niches-icon.svg" alt="" width={48} height={48} />
+                  <img src="/5.svg" alt="" width={48} height={48} />
                 </div>
                 <h3 className="niches-card__title">Независимость</h3>
                 <p className="niches-card__text">Посетитель за первые секунды понимает, кто вы, какую задачу решаете и почему к вам имеет смысл обратиться именно сейчас.</p>
               </article>
               <article className="niches-card niches-card--5">
                 <div className="niches-card__icon" aria-hidden>
-                  <img src="/niches-icon.svg" alt="" width={48} height={48} />
+                  <img src="/6.svg" alt="" width={48} height={48} />
                 </div>
                 <h3 className="niches-card__title">Масштабируемость</h3>
                 <p className="niches-card__text">Сайт можно развивать вместе с бизнесом: добавлять новые услуги, направления и продукты без необходимости полного редизайна.</p>

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { submitContactForm } from "../lib/supabase"
 
 interface ContactsSectionProps {
@@ -23,7 +24,7 @@ export function ContactsSection({ formSent, onFormSubmit }: ContactsSectionProps
             <div className="contacts-top__grid">
               <div className="contacts-top__cell">
                 <h3>Почта</h3>
-                <p>info.lvl80@mail.ru</p>
+                <p><a href="mailto:info.apex@bk.ru">info.apex@bk.ru</a></p>
               </div>
               <div className="contacts-top__cell">
                 <h3>Контактный номер</h3>
@@ -57,34 +58,43 @@ export function ContactsSection({ formSent, onFormSubmit }: ContactsSectionProps
                 <label htmlFor="contact-name">
                   Имя <span>*</span>
                 </label>
-                <input id="contact-name" name="name" />
+                <input id="contact-name" name="name" required />
               </div>
               <div className="contacts-form__field">
                 <label htmlFor="contact-phone">
                   Телефон <span>*</span>
                 </label>
-                <input id="contact-phone" name="phone" />
+                <input id="contact-phone" name="phone" type="tel" required />
               </div>
               <div className="contacts-form__field">
                 <label htmlFor="contact-message">
-                  Сообщение <span>*</span>
+                  Сообщение
                 </label>
                 <textarea id="contact-message" name="message" rows={3} />
               </div>
               <label className="contacts-form__checkbox">
                 <input type="checkbox" />
-                <span>Согласен с обработкой персональных данных</span>
+                <span>
+                  Согласен с обработкой{" "}
+                  <Link
+                    to="/privacy"
+                    className="contacts-form__policy-link"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    персональных данных
+                  </Link>
+                </span>
               </label>
               {submitError && <p className="contacts-form__error" role="alert">{submitError}</p>}
               <button type="submit" className="button button--dark contacts-form__submit">
-                Связаться с нами
+                Написать
               </button>
             </form>
           )}
         </div>
-        <span className="contacts__watermark" aria-hidden>
-          LVL 80.STUDIO
-        </span>
+        <div className="contacts-apex" aria-hidden>
+          <img src="/apex-brand.svg" alt="" className="contacts-apex__img" width={655} height={150} />
+        </div>
       </div>
     </section>
   )

@@ -1,6 +1,6 @@
 .section--contacts {
   position: relative;
-  padding: 0 0 180px;
+  padding: 0 0 80px;
   background: #050505;
   border: none;
   overflow: visible;
@@ -12,6 +12,32 @@
   padding: 0;
   position: relative;
   box-sizing: border-box;
+}
+
+/* Блок «Апекс.» под контактной формой (десктоп) */
+.contacts-apex {
+  display: none;
+  width: 100%;
+  margin-top: -48px;
+  padding: 0 0 40px;
+  position: relative;
+  z-index: 0;
+}
+
+.contacts-apex__img {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.45;
+}
+
+@media (min-width: 961px) {
+  .contacts-apex {
+    display: block;
+  }
 }
 
 .contacts__watermark {
@@ -102,19 +128,34 @@
   justify-content: space-between;
   font-size: 18px;
   color: #777777;
-  padding: 10px 0 4px;
+  padding: 6px 0 2px;
 }
 
-.contacts-form__field input,
-.contacts-form__field textarea {
+.contacts-form__field input {
   width: 100%;
+  height: 36px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 8px 0 10px;
+  padding: 4px 0 6px;
   font-size: 14px;
   color: #000000;
   background: transparent;
   outline: none;
+  box-sizing: border-box;
+}
+
+.contacts-form__field textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #000000;
+  background: rgba(0, 0, 0, 0.05);
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
 }
 
 .contacts-form__field input::placeholder,
@@ -122,9 +163,12 @@
   color: rgba(0, 0, 0, 0.45);
 }
 
-.contacts-form__field input:focus,
-.contacts-form__field textarea:focus {
+.contacts-form__field input:focus {
   border-bottom-color: #000000;
+}
+
+.contacts-form__field textarea:focus {
+  border-color: #000000;
 }
 
 .contacts-form__checkbox {
@@ -141,11 +185,23 @@
   height: 14px;
 }
 
+.contacts-form__policy-link {
+  color: #ff5c10;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 92, 16, 0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.contacts-form__policy-link:hover {
+  border-bottom-color: #ff5c10;
+  color: #e5520c;
+}
+
 .contacts-form__submit {
   margin-top: 16px;
   align-self: flex-start;
-  padding: 10px 32px;
-  border-radius: 2px;
+  padding: 12px 32px;
+  border-radius: 9999px;
   border: none;
   background: #000000;
   color: #ffffff;
@@ -193,34 +249,31 @@
     grid-template-columns: 1fr;
     padding: 32px 24px 32px;
     gap: 32px;
-    text-align: center;
+    text-align: left;
   }
 
   .contacts-top__text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .contacts-top__title {
     font-size: 48px;
     font-family: 'Manrope', system-ui, sans-serif;
-    text-align: center;
+    text-align: left;
   }
 
   .contacts-top__subtitle {
     font-size: 16px;
     font-family: 'Manrope', system-ui, sans-serif;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .contacts-top__grid {
-    flex-direction: column;
-    gap: 32px;
-    justify-content: center;
-    align-items: center;
+    display: none;
   }
 
   .contacts-form {
@@ -268,19 +321,25 @@
     padding: 0;
   }
 
+  .contacts-top__grid {
+    display: none;
+  }
+
   .contacts-top {
     padding: 24px 16px 24px;
-    text-align: center;
+    text-align: left;
   }
 
   .contacts-top__title {
     font-size: 32px;
     font-family: 'Manrope', system-ui, sans-serif;
+    text-align: left;
   }
 
   .contacts-top__subtitle {
     font-size: 14px;
     font-family: 'Manrope', system-ui, sans-serif;
+    text-align: left;
   }
 
   .contacts-top__cell h3 {

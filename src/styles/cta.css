@@ -1,4 +1,4 @@
-/* --- CTA-блок с ракетой --- */
+/* --- CTA-блок с УТП карточками --- */
 .section--cta {
   position: relative;
   padding: 96px 0 0;
@@ -13,129 +13,164 @@
 .section--cta__inner {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 24px;
   box-sizing: border-box;
 }
 
-.section--cta::before {
-  content: '';
-  position: absolute;
-  left: -120px;
-  top: 80%;
-  width: 520px;
-  height: 520px;
-  transform: translateY(-50%);
-  background: url(/cta-bg.svg) no-repeat center / contain;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.cta {
+.cta-utp {
   position: relative;
   z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 28px;
-  padding: 28px 36px;
-  border-radius: 10px;
-  background: rgba(8, 8, 8, 0.32);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  box-shadow:
-    0 26px 70px rgba(0, 0, 0, 0.85),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  gap: 48px;
 }
 
-.cta__icon {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cta__icon img {
-  width: 360px;
-  height: auto;
-  display: block;
-  animation: cta-rocket-float 4s ease-in-out infinite;
-}
-
-@keyframes cta-rocket-float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
-.cta__content {
-  position: relative;
-  z-index: 1;
-  max-width: 680px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cta__title {
-  margin: 0 0 12px;
-  font-family: 'Manrope', system-ui, sans-serif;
-  font-size: 42px;
-  font-style: normal;
+.cta-utp__title {
+  margin: 0;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-size: 66px;
   font-weight: 400;
   line-height: 1.2;
   color: #ffffff;
-  white-space: nowrap;
-}
-
-.cta__title-italic {
-  font-family: 'Manrope', system-ui, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-
-.cta__text {
-  margin: 0;
-  font-family: 'Manrope', system-ui, sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
-  color: rgba(241, 241, 241, 0.8);
-  max-width: 620px;
   text-align: left;
+  width: 100%;
+  align-self: flex-start;
 }
 
-.cta__button {
-  margin-top: 22px;
-  display: inline-flex;
+.cta-utp__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1400px;
+  justify-items: center;
+}
+
+.cta-utp__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  height: 600px;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(65, 65, 65, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Бейджи сверху, как на референсе */
+.cta-utp__card-badges-top {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.cta-utp__card-badge {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+}
+
+.cta-utp__card-bg {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 257px;
-  height: 46px;
-  padding: 0;
-  border-radius: 9999px;
-  border: none;
-  background: #ffffff;
-  color: #0a0a0a;
-  font-family: 'Manrope', system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  background: transparent;
+  border-radius: 12px 12px 0 0;
+  padding: 56px 24px 48px;
+  box-sizing: border-box;
 }
 
-.cta__button:hover {
-  background: #ff5c10;
+.cta-utp__card-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 96%;
+  max-height: 420px;
+  object-fit: contain;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.cta-utp__card-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 20px 22px;
+  background: transparent;
+  border-radius: 0 0 12px 12px;
+  pointer-events: none;
+}
+
+.cta-utp__card-title {
+  margin: 0;
+  font-family: 'Involve', 'Manrope', system-ui, sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.25;
   color: #ffffff;
+}
+
+.cta-utp__card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px #ff5c10;
+  border-color: #ff5c10;
+}
+
+.cta-utp__card:active {
+  transform: translateY(-2px) scale(1);
+}
+
+.cta-utp__card:hover .cta-utp__card-img {
+  transform: scale(1.04);
+  opacity: 0.98;
+}
+
+/* Карточки с SVG: при наведении двигается только SVG, не карточка */
+.cta-utp__cards .cta-utp__card:first-child:hover,
+.cta-utp__cards .cta-utp__card:nth-child(2):hover,
+.cta-utp__cards .cta-utp__card:nth-child(3):hover {
+  transform: none;
+}
+
+@keyframes cta-utp-card-img-hover {
+  0%, 100% {
+    transform: scale(1.04) translateY(0);
+  }
+  50% {
+    transform: scale(1.06) translateY(-4px);
+  }
+}
+
+.cta-utp__cards .cta-utp__card:first-child:hover .cta-utp__card-img,
+.cta-utp__cards .cta-utp__card:nth-child(2):hover .cta-utp__card-img,
+.cta-utp__cards .cta-utp__card:nth-child(3):hover .cta-utp__card-img {
+  animation: cta-utp-card-img-hover 1.2s ease-in-out infinite;
+  opacity: 0.98;
 }
 
 @media (max-width: 960px) {
@@ -145,38 +180,59 @@
 
   .section--cta__inner {
     padding: 0;
+    box-sizing: border-box;
   }
 
-  .cta {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding: 26px 22px;
-    text-align: center;
+  .cta-utp {
+    gap: 36px;
   }
 
-  .cta__title {
-    font-size: 32px;
-    white-space: normal;
-    text-align: center;
+  .cta-utp__cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: none;
+    margin: 0;
+    width: 100%;
   }
 
-  .cta__text {
-    text-align: left;
+  .cta-utp__card {
+    width: 100%;
+    height: auto;
+    min-height: 320px;
+    max-height: none;
   }
 
-  .cta__button {
-    width: 180px;
-    height: 46px;
+  .cta-utp__card-bg {
+    position: relative;
+    top: 0;
+    min-height: 200px;
+    padding: 40px 16px 32px;
   }
 
-  .cta__icon img {
-    width: 200px;
-    max-width: 100%;
+  .cta-utp__card-img {
+    max-height: 280px;
   }
 
-  .cta__text {
-    font-size: 16px;
+  .cta-utp__title {
+    font-size: 38px;
+  }
+
+  .cta-utp__card-overlay {
+    padding: 16px 16px 20px;
+    position: relative;
+  }
+
+  .cta-utp__card-title {
+    font-size: 48px;
+  }
+
+  .cta-utp__card-badge {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .cta-utp__card:hover {
+    transform: none;
   }
 }
 
@@ -187,33 +243,41 @@
 
   .section--cta__inner {
     padding: 0;
+    box-sizing: border-box;
   }
 
-  .cta {
-    padding: 20px 16px;
-    gap: 20px;
-    align-items: center;
-    text-align: center;
+  .cta-utp {
+    gap: 28px;
   }
 
-  .cta__title {
+  .cta-utp__card {
+    min-height: 280px;
+  }
+
+  .cta-utp__card-bg {
+    padding: 28px 12px 24px;
+    min-height: 160px;
+  }
+
+  .cta-utp__card-img {
+    max-height: 220px;
+  }
+
+  .cta-utp__title {
+    font-size: 28px;
+  }
+
+  .cta-utp__card-overlay {
+    padding: 12px 14px 16px;
+  }
+
+  .cta-utp__card-title {
     font-size: 32px;
-    text-align: center;
   }
 
-  .cta__icon img {
-    width: 160px;
-  }
-
-  .cta__text {
-    font-size: 14px;
-    text-align: left;
-  }
-
-  .cta__button {
-    width: 180px;
-    height: 46px;
-    font-size: 12px;
+  .cta-utp__card-badge {
+    padding: 4px 8px;
+    font-size: 10px;
   }
 }
 

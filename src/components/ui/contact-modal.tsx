@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { X, User, Phone, Mail } from "lucide-react"
-import { SlideButton } from "./slide-button"
 import { submitContactForm } from "../../lib/supabase"
 
 interface ContactModalProps {
@@ -46,9 +46,20 @@ export function ContactModal({
     if (e.target === overlayRef.current) onClose()
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    onFormSubmit()
+    const form = formRef.current
+    if (!form?.reportValidity()) return
+    setSubmitError(null)
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value.trim(),
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+      source: "modal" as const,
+    }
+    const { ok, error } = await submitContactForm(data)
+    if (ok) onFormSubmit()
+    else setSubmitError(error || "Ошибка отправки")
   }
 
   return (
@@ -146,31 +157,23 @@ export function ContactModal({
               </div>
               <label className="contact-modal__checkbox">
                 <input type="checkbox" required />
-                <span>Согласен с обработкой вот этого вот всего</span>
+                <span>
+                  Согласен с обработкой{" "}
+                  <Link
+                    to="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-modal__policy-link"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    вот этого вот всего
+                  </Link>
+                </span>
               </label>
               {submitError && <p className="contact-modal__error" role="alert">{submitError}</p>}
-              <div className="contact-modal__slide-btn-wrap">
-                <SlideButton
-                  onSubmit={async () => {
-                    if (!formRef.current?.reportValidity()) return false
-                    setSubmitError(null)
-                    const form = formRef.current
-                    const data = {
-                      name: (form.elements.namedItem("name") as HTMLInputElement).value.trim(),
-                      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
-                      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
-                      source: "modal" as const,
-                    }
-                    const { ok, error } = await submitContactForm(data)
-                    if (ok) {
-                      onFormSubmit()
-                      return true
-                    }
-                    setSubmitError(error || "Ошибка отправки")
-                    return false
-                  }}
-                />
-              </div>
+              <button type="submit" className="contact-modal__btn contact-modal__btn--submit">
+                Отправить
+              </button>
             </form>
           </div>
         )}
